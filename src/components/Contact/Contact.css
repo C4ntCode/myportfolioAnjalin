@@ -167,6 +167,22 @@ a.contact__item-value:hover {
   font-weight: 500;
 }
 
+.contact__error {
+  font-size: 0.92rem;
+  color: #b91c1c;
+  font-weight: 500;
+}
+
+.contact__submit-icon--spin {
+  animation: contact-spin 0.85s linear infinite;
+}
+
+@keyframes contact-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 880px) {
   .contact__grid {
     grid-template-columns: 1fr;

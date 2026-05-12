@@ -1,12 +1,10 @@
-import { useState } from 'react'
 import {
   FiMapPin,
   FiMail,
   FiPhone,
   FiGithub,
-  FiSend,
-  FiCheckCircle,
 } from 'react-icons/fi'
+import ContactForm from './ContactForm'
 import './Contact.css'
 
 const contactDetails = [
@@ -37,21 +35,6 @@ const contactDetails = [
 ]
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setForm((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setSubmitted(true)
-    setForm({ name: '', email: '', message: '' })
-    setTimeout(() => setSubmitted(false), 4000)
-  }
-
   return (
     <section id="contact" className="section contact">
       <div className="container">
@@ -98,70 +81,7 @@ const Contact = () => {
             </ul>
           </div>
 
-          <form
-            className="contact__form reveal"
-            onSubmit={handleSubmit}
-            noValidate
-          >
-            <div className="contact__field">
-              <label htmlFor="name">Name</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Your full name"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="contact__field">
-              <label htmlFor="email">Email</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="you@example.com"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="contact__field">
-              <label htmlFor="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="5"
-                placeholder="Tell me a little about your project or idea..."
-                value={form.message}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <button type="submit" className="btn btn--primary contact__submit">
-              {submitted ? (
-                <>
-                  <FiCheckCircle aria-hidden="true" />
-                  Message Sent
-                </>
-              ) : (
-                <>
-                  Send Message
-                  <FiSend aria-hidden="true" />
-                </>
-              )}
-            </button>
-
-            {submitted && (
-              <p className="contact__success">
-                Thanks! Your message has been sent. I'll get back to you soon.
-              </p>
-            )}
-          </form>
+          <ContactForm />
         </div>
       </div>
     </section>
